@@ -1,0 +1,24 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Post List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Post List</h1>
+    {% if perms.webinfo.add_post %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_post_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Post</a>
+        </div>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+        {% for post in post_list %}
+            <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
+        {% empty %}
+            <em>There are currently no posts available.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

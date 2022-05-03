@@ -1,0 +1,84 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Book - {{ book }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ book }}</h1>
+    <ul>
+        {% if perms.webinfo.change_book %}
+            <a href="{{ book.get_update_url }}" class="btn btn-outline-dark">
+                    Edit Book</a>
+        {% endif %}
+        {% if perms.webinfo.delete_book %}
+            <a href="{{ book.get_delete_url }}" class="btn btn-outline-dark">
+                    Delete Book</a>
+        {% endif %}
+    </ul>
+
+    <section>
+    <p class="lead">
+        <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th scope="row">Book Name:</th>
+                <td>{{ book.book_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Year of Publication:</th>
+                <td>{{ book.year }}</td>
+            </tr>
+            <tr>
+                <th>Publisher:</th>
+                <td>{{ book.publisher }}</td>
+            </tr>
+            {% if book.textbook_or_not %}
+                <tr>
+                    <th scope="row">Is it a textbook:</th>
+                    <td>Yes</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <th scope="row">Is it a textbook:</th>
+                    <td>No</td>
+                </tr>
+            {% endif %}
+        </tbody>
+        </table>
+     </p>
+    </section>
+
+    <p class="lead">
+        <h3>Authors</h3>
+        <ul class="list-group">
+            {% for author in author_list %}
+                <a href="{{ author.get_absolute_url }}" class="list-group-item list-group-item-action">{{ author.author }}</a>
+            {% empty %}
+                <em>The author of this book is currently unknown.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p class="lead">
+        <h3>Genres</h3>
+        <ul class="list-group">
+            {% for explain in explain_list %}
+                <a href="{{ explain.get_absolute_url }}" class="list-group-item list-group-item-action">{{ explain.type }}</a>
+            {% empty %}
+                <em>There is no genre for this book.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p class="lead">
+        <h3>Post</h3>
+        <ul class="list-group">
+            {% for post in post_list %}
+                <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post.post_title }}</a>
+            {% empty %}
+                <em>There is no post about this book.</em>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}

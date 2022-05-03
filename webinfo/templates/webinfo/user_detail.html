@@ -1,0 +1,110 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    User - {{ user }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ user }}</h1>
+    <ul>
+        {% if perms.webinfo.change_systemuser %}
+            <a href="{{ user.get_update_url }}" class="btn btn-outline-dark">
+                Edit User</a>
+        {% endif %}
+        {% if perms.webinfo.delete_systemuser %}
+            <a href="{{ user.get_delete_url }}" class="btn btn-outline-dark">
+                Delete User</a>
+        {% endif %}
+    </ul>
+
+    <section>
+    <p class="lead">
+        <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th scope="row">First Name:</th>
+                <td>{{ user.first_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Last Name:</th>
+                <td>{{ user.last_name }}</td>
+            </tr>
+            {% if user.disambiguator %}
+                <tr>
+                    <th scope="row">Disambiguator:</th>
+                    <td>{{ user.disambiguator }}</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+     </p>
+    </section>
+
+
+
+    <p class="lead">
+        <h3>Favorite Book</h3>
+        <ul class="list-group">
+            {% for like in like_list %}
+
+                <a href="{{ like.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ like.book }}</a>
+
+            {% empty %}
+                <em>There are currently no favorite books for this user.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p class="lead">
+        <h3>Favorite Type</h3>
+        <ul class="list-group">
+            {% for prefer in prefer_list %}
+
+                <a href="{{ prefer.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ prefer.type }}</a>
+
+            {% empty %}
+                <em>There are currently no favorite types for this user.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p class="lead">
+        <h3>Post</h3>
+        <ul class="list-group">
+            {% for post in post_list %}
+
+                <a href="{{ post.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ post }}</a>
+
+            {% empty %}
+                <em>There are currently no posts for this user.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p class="lead">
+        <h3>Comment</h3>
+        <ul class="list-group">
+            {% for comment in comment_list %}
+                <a href="{{ comment.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ comment }}</a>
+            {% empty %}
+                <em>There are currently no comments for this user.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p class="lead">
+        <h3>Activity</h3>
+        <ul class="list-group">
+            {% for activity in activity_list %}
+                <a href="{{ activity.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ activity.activity }}</a>
+            {% empty %}
+                <em>There are currently no activities for this user.</em>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}

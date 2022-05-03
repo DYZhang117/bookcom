@@ -1,0 +1,36 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Participate - {{ participate}}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ participate }}</h1>
+    <ul>
+        {% if perms.webinfo.change_participate %}
+            <a href="{{ participate.get_update_url }}" class="btn btn-outline-dark">
+                Edit Participate</a>
+        {% endif %}
+        {% if perms.webinfo.delete_participate %}
+            <a href="{{ participate.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Participate</a>
+        {% endif %}
+    </ul>
+
+    <section>
+        <p class="lead">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">User:</th>
+                        <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Registered activity:</th>
+                        <td><a href="{{ activity.get_absolute_url }}">{{ activity }}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </section>
+{% endblock %}

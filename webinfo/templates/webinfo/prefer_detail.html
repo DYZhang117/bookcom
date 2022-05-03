@@ -1,0 +1,36 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Favorite Type - {{ prefer }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ prefer }}</h1>
+    <ul>
+        {% if perms.webinfo.change_prefer %}
+            <a href="{{ prefer.get_update_url }}" class="btn btn-outline-dark">
+                Edit Favorite Type</a>
+        {% endif %}
+        {% if perms.webinfo.delete_prefer %}
+            <a href="{{ prefer.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Favorite Type</a>
+        {% endif %}
+    </ul>
+
+    <section>
+    <p class="lead">
+        <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th scope="row">User:</th>
+                <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Favorite Type:</th>
+                <td>{{ prefer.type }}</td>
+            </tr>
+            </tbody>
+        </table>
+     </p>
+    </section>
+{% endblock %}

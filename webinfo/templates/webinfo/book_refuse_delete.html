@@ -1,0 +1,63 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Book
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2 class="mt-5">Error Deleting Book</h2>
+        <p class="lead">
+            You may not delete book {{ book }}.  This
+            book currently associates with the following
+            sections:
+        </p>
+        <p class="lead">
+        {% if posts %}
+            <h3>Related Posts</h3>
+            <ul class="list-group">
+                {% for post in posts %}
+                <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
+                {%  endfor %}
+            </ul>
+        {% endif %}
+        </p>
+
+        <p class="lead">
+        {% if likes %}
+            <h3>Related Favorite Books</h3>
+            <ul class="list-group">
+                {% for like in likes %}
+                <a href="{{ like.get_absolute_url }}" class="list-group-item list-group-item-action">{{ like.user }}</a>
+                {%  endfor %}
+            </ul>
+        {% endif %}
+        </p>
+
+        <p class="lead">
+        {% if writes %}
+            <h3>Related Author</h3>
+            <ul class="list-group">
+                {% for write in writes %}
+                <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write.author }}</a>
+                {%  endfor %}
+            </ul>
+        {% endif %}
+        </p>
+
+        <p class="lead">
+        {% if explains %}
+            <h3>Related Type</h3>
+            <ul class="list-group">
+                {% for explain in explains %}
+                <a href="{{ explain.get_absolute_url }}" class="list-group-item list-group-item-action">{{ explain.type }}</a>
+                {%  endfor %}
+            </ul>
+        {% endif %}
+        </p>
+
+        <p>
+            Return to <a href="{% url 'webinfo_book_list_urlpattern' %}">Book List</a>.
+        </p>
+    </div>
+{% endblock %}

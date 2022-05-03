@@ -1,0 +1,61 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Post - {{ post }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ post }}</h1>
+    <ul>
+        {% if perms.webinfo.change_post %}
+            <a href="{{ post.get_update_url }}" class="btn btn-outline-dark">
+                Edit Post</a>
+        {% endif %}
+        {% if perms.webinfo.delete_post %}
+            <a href="{{ post.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Post</a>
+        {% endif %}
+    </ul>
+
+    <section>
+    <p class="lead">
+        <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th scope="row">Title:</th>
+                <td>{{ post_title }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Post by:</th>
+                <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Ratings:</th>
+                <td>{{ rate }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Reviewed Book:</th>
+                <td><a href="{{ book.get_absolute_url }}">{{ book }}</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Content:</th>
+                <td>{{ content }}</td>
+            </tr>
+            </tbody>
+        </table>
+     </p>
+    </section>
+
+    <p class="lead">
+        <h3>Comment</h3>
+        <ul class="list-group">
+            {% for comment in comment_list %}
+
+                <a href="{{ comment.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ comment.content }}</a>
+            {% empty %}
+                <em>There are currently no comments for this post.</em>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}

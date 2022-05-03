@@ -1,0 +1,36 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Book & Genre - {{ explain }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ explain }}</h1>
+    <ul>
+        {% if perms.webinfo.change_explain %}
+            <a href="{{ explain.get_update_url }}" class="btn btn-outline-dark">
+                Edit Book & Genre Relation</a>
+        {% endif %}
+        {% if perms.webinfo.delete_explain %}
+            <a href="{{ explain.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Book & Genre Relation</a>
+        {% endif %}
+    </ul>
+
+    <section>
+        <p class="lead">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">Book:</th>
+                        <td><a href="{{ book.get_absolute_url }}">{{ book }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Genre:</th>
+                        <td>{{ explain.type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </section>
+{% endblock %}

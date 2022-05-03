@@ -1,0 +1,24 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Favorite Book List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Favorite Book List</h1>
+    {% if perms.webinfo.add_like %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_like_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Favorite Book</a>
+        </div>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+        {% for like in like_list %}
+            <a href="{{ like.get_absolute_url }}" class="list-group-item list-group-item-action">{{ like }}</a>
+        {% empty %}
+            <em>There are no favorite books here.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Book & Genre List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Book & Genre List</h1>
+    {% if perms.webinfo.add_explain %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_explain_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Book & Genre Relation</a>
+        </div>
+    {% endif %}
+    <ul class="list-group list-group-flush">
+        {% for explain in explain_list %}
+            <a href="{{ explain.get_absolute_url }}" class="list-group-item list-group-item-action">{{ explain }}</a>
+        {% empty %}
+            <em>There is no book-to-genre correspondence.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

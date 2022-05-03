@@ -1,0 +1,25 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Activity List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Activity List</h1>
+
+    {% if perms.webinfo.add_activity %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_activity_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Activity</a>
+        </div>
+    {% endif %}
+    <ul class="list-group list-group-flush">
+        {% for activity in activity_list %}
+            <a href="{{ activity.get_absolute_url }}" class="list-group-item list-group-item-action">{{ activity }}</a>
+        {% empty %}
+            <em>There are currently no activities available.</em>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

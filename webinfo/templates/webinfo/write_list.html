@@ -1,0 +1,23 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Author & Book List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Author & Book List</h1>
+    {% if perms.webinfo.add_write %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_write_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Author & Book Relation</a>
+        </div>
+    {% endif %}
+    <ul class="list-group list-group-flush">
+        {% for write in write_list %}
+            <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write }}</a>
+        {% empty %}
+            <em>There is no author-to-book correspondence.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Book & Author - {{ write }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ write }}</h1>
+    <ul>
+        {% if perms.webinfo.change_write %}
+            <a href="{{ write.get_update_url }}" class="btn btn-outline-dark">
+                Edit Book & Author Relation</a>
+        {% endif %}
+        {% if perms.webinfo.delete_write %}
+            <a href="{{ write.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Book & Author Relation</a>
+        {% endif %}
+    </ul>
+
+    <section>
+        <p class="lead">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">Book name:</th>
+                        <td><a href="{{ book.get_absolute_url }}">{{ book }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Author:</th>
+                        <td><a href="{{ author.get_absolute_url }}">{{ author }}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </section>
+{% endblock %}

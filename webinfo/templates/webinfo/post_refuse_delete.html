@@ -1,0 +1,28 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Post
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2 class="mt-5">Error Deleting Post</h2>
+        <p class="lead">
+            You may not delete post {{ post }}.  This
+            post currently has related with the following
+            comments:
+        </p>
+
+        <p class="lead">
+            <ul class="list-group">
+                {% for comment in comments %}
+                <a href="{{ comment.get_absolute_url }}" class="list-group-item list-group-item-action">{{ comment }}</a>
+                {%  endfor %}
+            </ul>
+        </p>
+
+        <p>
+            Return to <a href="{% url 'webinfo_post_list_urlpattern' %}">Post List</a>.
+        </p>
+    </div>
+{% endblock %}

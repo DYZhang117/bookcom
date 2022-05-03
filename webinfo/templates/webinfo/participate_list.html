@@ -1,0 +1,25 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Participate List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Participate List</h1>
+
+    {% if perms.webinfo.add_participate %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_participate_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Participate</a>
+        </div>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+        {% for participate in participate_list %}
+            <a href="{{ participate.get_absolute_url }}" class="list-group-item list-group-item-action">{{ participate }}</a>
+        {% empty %}
+            <em>There are no registrations here.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

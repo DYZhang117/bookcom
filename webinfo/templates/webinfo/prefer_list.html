@@ -1,0 +1,24 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Favorite Type List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Favorite Type List</h1>
+
+    {% if perms.webinfo.add_prefer %}
+            <div class="mobile">
+                <a href="{% url 'webinfo_prefer_create_urlpattern' %}"
+                class="btn btn-outline-dark">
+                    Create New Favorite Type</a>
+            </div>
+    {% endif %}
+    <ul class="list-group list-group-flush">
+        {% for prefer in prefer_list %}
+            <a href="{{ prefer.get_absolute_url }}" class="list-group-item list-group-item-action">{{ prefer }}</a>
+        {% empty %}
+            <em>There are no favorite types here.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

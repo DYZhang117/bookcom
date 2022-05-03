@@ -1,0 +1,25 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    User List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> User List</h1>
+    {% if perms.webinfo.add_systemuser %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_user_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New User</a>
+        </div>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+        {% for user in user_list %}
+            <a href="{{ user.get_absolute_url }}" class="list-group-item list-group-item-action">{{ user }}</a>
+        {% empty %}
+            <em>There are currently no users available.</em>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Author - {{ author }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ author }}</h1>
+    <ul>
+        {% if perms.webinfo.change_author %}
+            <a href="{{ author.get_update_url }}" class="btn btn-outline-dark">
+                Edit Author</a>
+        {% endif %}
+        {% if perms.webinfo.delete_author %}
+            <a href="{{ author.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Author</a>
+        {% endif %}
+    </ul>
+
+    <section>
+         <p class="lead">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">First Name:</th>
+                        <td>{{ author.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last Name:</th>
+                        <td>{{ author.last_name }}</td>
+                    </tr>
+                    {% if author.disambiguator %}
+                        <tr>
+                            <th scope="row">Disambiguator:</th>
+                            <td>{{ author.disambiguator }}</td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">Nation:</th>
+                        <td>{{ author.nation }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Birth Year:</th>
+                        <td>{{ author.year }}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </p>
+    </section>
+
+    <p class="lead">
+        <h3>Book</h3>
+        <ul class="list-group">
+            {% for book in book_list %}
+                <a href="{{ book.get_absolute_url }}"
+                class="list-group-item list-group-item-action">{{ book.book }}</a>
+            {% empty %}
+                <em>There are currently no books for this author.</em>
+            {% endfor %}
+        </ul>
+    </p>
+
+{% endblock %}

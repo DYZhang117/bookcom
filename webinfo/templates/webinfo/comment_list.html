@@ -1,0 +1,24 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Comment List
+{% endblock %}
+
+{% block org_content %}
+<h1 class="mt-5"> Comment List</h1>
+    {% if perms.webinfo.add_comment %}
+        <div class="mobile">
+            <a href="{% url 'webinfo_comment_create_urlpattern' %}"
+            class="btn btn-outline-dark">
+                Create New Comment</a>
+        </div>
+    {% endif %}
+
+    <ul class="list-group list-group-flush">
+        {% for comment in comment_list %}
+            <a href="{{ comment.get_absolute_url }}" class="list-group-item list-group-item-action">{{ comment }}</a>
+        {% empty %}
+            <em>There are currently no comments.</em>
+        {% endfor %}
+    </ul>
+{% endblock %}

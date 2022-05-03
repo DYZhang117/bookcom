@@ -1,0 +1,20 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Delete Book & Genre Relation
+{% endblock %}
+
+{% block content %}
+    <form
+        action="{{ explain.get_delete_url }}"
+        method="post">
+        {% csrf_token %}
+        <p class="lead">
+            <h2 class="mt-5">Are you sure that you want to delete
+        book & author relation {{ explain }}?</h2>
+        </p>
+        <a class="btn btn-outline-dark" href="{{ explain.get_absolute_url }}"
+        role="button">Cancel</a>
+        <button type="submit" class="btn btn-outline-danger">Delete Book & Genre Relation</button>
+    </form>
+{% endblock %}

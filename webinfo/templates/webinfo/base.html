@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>
+        {% block title %}
+            title is provided by inheriting templates
+        {% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if IE]><script
+      src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+    </script><![endif]-->
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static 'webinfo/normalize.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static 'webinfo/skeleton.css' %}">#}
+{#    <link rel="stylesheet" type="text/css"#}
+{#          href="{% static 'webinfo/style.css' %}">#}
+{#    {% block head %}{% endblock %}#}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Book Community</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+{#      <ul class="navbar-nav">#}
+      <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'home_urlpattern' %}">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                  User
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  {% if perms.webinfo.view_systemuser %}
+                      <a class="dropdown-item" href="{% url 'webinfo_user_list_urlpattern' %}">User Info</a>
+                  {% endif %}
+
+                  {% if perms.webinfo.view_like %}
+                  <a class="dropdown-item" href="{% url 'webinfo_like_list_urlpattern' %}">Favorite Book</a>
+                  {% endif %}
+
+                  {% if perms.webinfo.view_prefer %}
+                  <a class="dropdown-item" href="{% url 'webinfo_prefer_list_urlpattern' %}">Favorite Type</a>
+                  {% endif %}
+              </div>
+          </li>
+
+          {% if perms.webinfo.view_book %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'webinfo_book_list_urlpattern' %}">Book</a>
+              </li>
+          {% endif %}
+
+          {% if perms.webinfo.view_author %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'webinfo_author_list_urlpattern' %}">Author</a>
+              </li>
+          {% endif %}
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                  Review
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  {% if perms.webinfo.view_post %}
+                      <a class="dropdown-item" href="{% url 'webinfo_post_list_urlpattern' %}">Post</a>
+                  {% endif %}
+
+                  {% if perms.webinfo.view_comment %}
+                      <a class="dropdown-item" href="{% url 'webinfo_comment_list_urlpattern' %}">Comment</a>
+                  {% endif %}
+              </div>
+          </li>
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                  Activity
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  {% if perms.webinfo.view_activity %}
+                      <a class="dropdown-item" href="{% url 'webinfo_activity_list_urlpattern' %}">Activity Info</a>
+                  {% endif %}
+
+                  {% if perms.webinfo.view_participate %}
+                      <a class="dropdown-item" href="{% url 'webinfo_participate_list_urlpattern' %}">Participate</a>
+                  {% endif %}
+              </div>
+          </li>
+
+          {% if perms.webinfo.view_explain %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'webinfo_explain_list_urlpattern' %}">Book & Genre</a>
+              </li>
+          {% endif %}
+
+          {% if perms.webinfo.view_write %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'webinfo_write_list_urlpattern' %}">Author & Book</a>
+              </li>
+          {% endif %}
+      </ul>
+
+      <ul class="navbar-nav px-3">
+            {% if user.is_authenticated %}
+                <li class="nav-item text-nowrap"><a class="nav-link" href="{% url 'logout_urlpattern' %}">
+                    Log Out, {{ user.get_username }}</a></li>
+            {% else %}
+                <li class="nav-item text-nowrap"><a class="nav-link" href="{% url 'login_urlpattern' %}">
+                    Log In</a></li>
+            {% endif %}
+      </ul>
+  </div>
+</nav>
+
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        {% block content %}
+            <div class="container">
+                {% block org_content %}
+                    This is default content!
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+</main>
+
+{% if is_paginated %}
+{#    <div class="container">#}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {% if first_page_url %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ first_page_url }}">
+                                First</a>
+                        </li>
+                    {% endif %}
+                    {% if previous_page_url %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ previous_page_url }}">
+                                Previous</a>
+                        </li>
+                    {% endif %}
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            Page {{ page_obj.number }}
+                            of {{ paginator.num_pages }}
+                        </a>
+                    </li>
+                    {% if next_page_url %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ next_page_url }}">
+                                Next</a>
+                        </li>
+                    {% endif %}
+                    {% if last_page_url %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ last_page_url }}">
+                                Last</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+{#        </div>#}
+    {% endif %}
+
+
+ <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p class="text-center">Book Community, by Diyan-Zhang.</p>
+    </div>
+ </footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
+

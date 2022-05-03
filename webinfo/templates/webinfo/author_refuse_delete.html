@@ -1,0 +1,28 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Error Deleting Author
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h2 class="mt-5">Error Deleting Author</h2>
+        <p class="lead">
+            You may not delete author {{ author }}.  This
+            author is currently assigned to the following
+            books related:
+        </p>
+
+        <p class="lead">
+            <ul class="list-group">
+                {% for write in writes %}
+                <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write.book }}</a>
+                {%  endfor %}
+            </ul>
+        </p>
+
+        <p>
+            Return to <a href="{% url 'webinfo_author_list_urlpattern' %}">Author List</a>.
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Favorite Book - {{ like }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ like }}</h1>
+    <ul>
+        {% if perms.webinfo.change_like %}
+            <a href="{{ like.get_update_url }}" class="btn btn-outline-dark">
+                Edit Favorite Book</a>
+        {% endif %}
+        {% if perms.webinfo.delete_like %}
+            <a href="{{ like.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Favorite Book</a>
+        {% endif %}
+    </ul>
+
+    <section>
+        <p class="lead">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">User:</th>
+                        <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Favorite Book:</th>
+                        <td><a href="{{ book.get_absolute_url }}">{{ book }}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </section>
+{% endblock %}

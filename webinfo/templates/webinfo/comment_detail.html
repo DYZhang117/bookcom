@@ -1,0 +1,40 @@
+{% extends 'webinfo/base.html' %}
+
+{% block title %}
+    Comment - {{ comment }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ comment }}</h1>
+    <ul>
+        {% if perms.webinfo.change_comment %}
+            <a href="{{ comment.get_update_url }}" class="btn btn-outline-dark">
+                Edit Comment</a>
+        {% endif %}
+        {% if perms.webinfo.delete_comment %}
+            <a href="{{ comment.get_delete_url }}" class="btn btn-outline-dark">
+                Delete Comment</a>
+        {% endif %}
+    </ul>
+
+    <section>
+        <p class="lead">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="row">Comment by:</th>
+                        <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Content:</th>
+                        <td>{{ comment.content }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">From Post:</th>
+                        <td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </section>
+{% endblock %}

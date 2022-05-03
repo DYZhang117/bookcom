@@ -1,0 +1,21 @@
+{% extends 'webinfo/base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Update Book & Genre Relation
+{% endblock %}
+
+{% block content %}
+    <p class="lead">
+        <h1 class="mt-5">Update Book & Genre Relation</h1>
+    </p>
+
+    <form
+        action="{{ explain.get_update_url }}"
+        method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-outline-dark">Update Book & Genre Relation</button>
+    </form>
+{% endblock %}
