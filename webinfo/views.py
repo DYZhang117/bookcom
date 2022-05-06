@@ -1,13 +1,34 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.forms import UserCreationForm
 from webinfo.utils import ObjectCreateMixin, PageLinksMixin
 from webinfo.forms import BookForm, AuthorForm, CommentForm, UserForm, ActivityForm, PostForm, PreferForm, LikeForm, \
     ExplainForm, WriteForm, ParticipateForm
 from webinfo.models import Book, Author, Post, Activity, SystemUser, Like, Prefer, Comment, Explain, Write, Participate
+from django.contrib.auth.models import Group
+
+
+# reference: https://thecodinginterface.com/blog/django-auth-part1/
+class SignupView(View):
+    def get(self, request):
+        return render(request,
+                      'registration/signup.html',
+                      {
+                          'form': UserCreationForm()
+                      })
+
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            user_group = Group.objects.get(name='user')
+            user.groups.add(user_group)
+            return redirect(reverse('home_urlpattern'))
+        return render(request, 'registration/signup.html', {'form': form})
 
 
 class BookList(LoginRequiredMixin, PermissionRequiredMixin, PageLinksMixin, ListView):

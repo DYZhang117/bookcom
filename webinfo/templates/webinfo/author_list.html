@@ -4,23 +4,13 @@
     Author List
 {% endblock %}
 
-{#{% block create_button %}#}
-{#    {% if perms.webinfo.add_author %}#}
-{#        <a href="{% url 'webinfo_author_create_urlpattern' %}"#}
-{#            class="btn btn-outline-dark">#}
-{#                Create New Author</a>#}
-{#    {% endif %}#}
-{#{% endblock %}#}
-
 {% block org_content %}
     <h1 class="mt-5"> Author List</h1>
 
     {% if perms.webinfo.add_author %}
     <div class="mobile">
-      <a
-          href="{% url 'webinfo_author_create_urlpattern' %}"
-          class="btn btn-outline-dark">
-        Create New Author</a>
+        <a href="{% url 'webinfo_author_create_urlpattern' %}"
+           class="btn btn-outline-dark"> Create New Author</a>
     </div>
     {% endif %}
 

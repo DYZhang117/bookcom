@@ -17,7 +17,7 @@
             <h3>Related Posts</h3>
             <ul class="list-group">
                 {% for post in posts %}
-                <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
+                    <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
                 {%  endfor %}
             </ul>
         {% endif %}
@@ -28,7 +28,7 @@
             <h3>Related Favorite Books</h3>
             <ul class="list-group">
                 {% for like in likes %}
-                <a href="{{ like.get_absolute_url }}" class="list-group-item list-group-item-action">{{ like.user }}</a>
+                    <a href="{{ like.get_absolute_url }}" class="list-group-item list-group-item-action">{{ like.user }}</a>
                 {%  endfor %}
             </ul>
         {% endif %}
@@ -39,7 +39,7 @@
             <h3>Related Author</h3>
             <ul class="list-group">
                 {% for write in writes %}
-                <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write.author }}</a>
+                    <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write.author }}</a>
                 {%  endfor %}
             </ul>
         {% endif %}
@@ -50,7 +50,7 @@
             <h3>Related Type</h3>
             <ul class="list-group">
                 {% for explain in explains %}
-                <a href="{{ explain.get_absolute_url }}" class="list-group-item list-group-item-action">{{ explain.type }}</a>
+                    <a href="{{ explain.get_absolute_url }}" class="list-group-item list-group-item-action">{{ explain.type }}</a>
                 {%  endfor %}
             </ul>
         {% endif %}

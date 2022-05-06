@@ -5,13 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <form
-        action="{{ activity.get_delete_url }}"
-        method="post">
+    <form action="{{ activity.get_delete_url }}" method="post">
         {% csrf_token %}
         <p class="lead">
-            <h2 class="mt-5">Are you sure that you want to delete
-        activity {{ activity }}?</h2>
+            <h2 class="mt-5">Are you sure that you want to delete activity {{ activity }}?</h2>
         </p>
         <a class="btn btn-outline-dark" href="{{ activity.get_absolute_url }}" role="button">Cancel</a>
         <button type="submit" class="btn btn-outline-danger">Delete Activity</button>

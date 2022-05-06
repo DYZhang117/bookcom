@@ -5,14 +5,13 @@
 {% endblock %}
 
 {% block org_content %}
-<h1 class="mt-5"> Favorite Type List</h1>
+    <h1 class="mt-5"> Favorite Type List</h1>
 
     {% if perms.webinfo.add_prefer %}
-            <div class="mobile">
-                <a href="{% url 'webinfo_prefer_create_urlpattern' %}"
-                class="btn btn-outline-dark">
-                    Create New Favorite Type</a>
-            </div>
+        <div class="mobile">
+            <a href="{% url 'webinfo_prefer_create_urlpattern' %}"
+               class="btn btn-outline-dark">Create New Favorite Type</a>
+        </div>
     {% endif %}
     <ul class="list-group list-group-flush">
         {% for prefer in prefer_list %}

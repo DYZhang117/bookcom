@@ -20,20 +20,20 @@
     <section>
         <p class="lead">
             <table class="table table-hover">
-                <tbody>
-                    <tr>
-                        <th scope="row">Comment by:</th>
-                        <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Content:</th>
-                        <td>{{ comment.content }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">From Post:</th>
-                        <td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
-                    </tr>
-                </tbody>
+            <tbody>
+                <tr>
+                    <th scope="row">Comment by:</th>
+                    <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Content:</th>
+                    <td>{{ comment.content }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">From Post:</th>
+                    <td><a href="{{ post.get_absolute_url }}">{{ post }}</a></td>
+                </tr>
+            </tbody>
             </table>
         </p>
     </section>

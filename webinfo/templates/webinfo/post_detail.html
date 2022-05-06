@@ -18,39 +18,38 @@
     </ul>
 
     <section>
-    <p class="lead">
-        <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th scope="row">Title:</th>
-                <td>{{ post_title }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Post by:</th>
-                <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
-            </tr>
-            <tr>
-                <th scope="row">Ratings:</th>
-                <td>{{ rate }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Reviewed Book:</th>
-                <td><a href="{{ book.get_absolute_url }}">{{ book }}</a></td>
-            </tr>
-            <tr>
-                <th scope="row">Content:</th>
-                <td>{{ content }}</td>
-            </tr>
+        <p class="lead">
+            <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th scope="row">Title:</th>
+                    <td>{{ post_title }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Post by:</th>
+                    <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Ratings:</th>
+                    <td>{{ rate }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Reviewed Book:</th>
+                    <td><a href="{{ book.get_absolute_url }}">{{ book }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Content:</th>
+                    <td>{{ content }}</td>
+                </tr>
             </tbody>
-        </table>
-     </p>
+            </table>
+        </p>
     </section>
 
     <p class="lead">
         <h3>Comment</h3>
         <ul class="list-group">
             {% for comment in comment_list %}
-
                 <a href="{{ comment.get_absolute_url }}"
                 class="list-group-item list-group-item-action">{{ comment.content }}</a>
             {% empty %}

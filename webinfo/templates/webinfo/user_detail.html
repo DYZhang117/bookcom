@@ -18,26 +18,26 @@
     </ul>
 
     <section>
-    <p class="lead">
-        <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th scope="row">First Name:</th>
-                <td>{{ user.first_name }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Last Name:</th>
-                <td>{{ user.last_name }}</td>
-            </tr>
-            {% if user.disambiguator %}
+        <p class="lead">
+            <table class="table table-hover">
+            <tbody>
                 <tr>
-                    <th scope="row">Disambiguator:</th>
-                    <td>{{ user.disambiguator }}</td>
+                    <th scope="row">First Name:</th>
+                    <td>{{ user.first_name }}</td>
                 </tr>
-            {% endif %}
+                <tr>
+                    <th scope="row">Last Name:</th>
+                    <td>{{ user.last_name }}</td>
+                </tr>
+                {% if user.disambiguator %}
+                    <tr>
+                        <th scope="row">Disambiguator:</th>
+                        <td>{{ user.disambiguator }}</td>
+                    </tr>
+                {% endif %}
             </tbody>
-        </table>
-     </p>
+            </table>
+        </p>
     </section>
 
 
@@ -46,10 +46,8 @@
         <h3>Favorite Book</h3>
         <ul class="list-group">
             {% for like in like_list %}
-
                 <a href="{{ like.get_absolute_url }}"
                 class="list-group-item list-group-item-action">{{ like.book }}</a>
-
             {% empty %}
                 <em>There are currently no favorite books for this user.</em>
             {% endfor %}
@@ -60,10 +58,8 @@
         <h3>Favorite Type</h3>
         <ul class="list-group">
             {% for prefer in prefer_list %}
-
                 <a href="{{ prefer.get_absolute_url }}"
                 class="list-group-item list-group-item-action">{{ prefer.type }}</a>
-
             {% empty %}
                 <em>There are currently no favorite types for this user.</em>
             {% endfor %}
@@ -74,10 +70,8 @@
         <h3>Post</h3>
         <ul class="list-group">
             {% for post in post_list %}
-
                 <a href="{{ post.get_absolute_url }}"
                 class="list-group-item list-group-item-action">{{ post }}</a>
-
             {% empty %}
                 <em>There are currently no posts for this user.</em>
             {% endfor %}

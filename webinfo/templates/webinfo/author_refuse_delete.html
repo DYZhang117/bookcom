@@ -16,7 +16,7 @@
         <p class="lead">
             <ul class="list-group">
                 {% for write in writes %}
-                <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write.book }}</a>
+                    <a href="{{ write.get_absolute_url }}" class="list-group-item list-group-item-action">{{ write.book }}</a>
                 {%  endfor %}
             </ul>
         </p>

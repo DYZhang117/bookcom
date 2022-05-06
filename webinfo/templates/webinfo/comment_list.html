@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block org_content %}
-<h1 class="mt-5"> Comment List</h1>
+    <h1 class="mt-5"> Comment List</h1>
     {% if perms.webinfo.add_comment %}
         <div class="mobile">
             <a href="{% url 'webinfo_comment_create_urlpattern' %}"

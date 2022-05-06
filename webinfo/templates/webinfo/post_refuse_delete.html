@@ -16,7 +16,7 @@
         <p class="lead">
             <ul class="list-group">
                 {% for comment in comments %}
-                <a href="{{ comment.get_absolute_url }}" class="list-group-item list-group-item-action">{{ comment }}</a>
+                    <a href="{{ comment.get_absolute_url }}" class="list-group-item list-group-item-action">{{ comment }}</a>
                 {%  endfor %}
             </ul>
         </p>

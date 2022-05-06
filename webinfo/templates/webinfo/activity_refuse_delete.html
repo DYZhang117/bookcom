@@ -16,7 +16,7 @@
         <p class="lead">
             <ul class="list-group">
                 {% for participate in participates %}
-                <a href="{{ participate.get_absolute_url }}" class="list-group-item list-group-item-action">{{ participate.user }}</a>
+                    <a href="{{ participate.get_absolute_url }}" class="list-group-item list-group-item-action">{{ participate.user }}</a>
                 {%  endfor %}
             </ul>
         </p>

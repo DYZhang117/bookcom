@@ -18,19 +18,19 @@
     </ul>
 
     <section>
-    <p class="lead">
-        <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th scope="row">User:</th>
-                <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
-            </tr>
-            <tr>
-                <th scope="row">Favorite Type:</th>
-                <td>{{ prefer.type }}</td>
-            </tr>
+        <p class="lead">
+            <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th scope="row">User:</th>
+                    <td><a href="{{ user.get_absolute_url }}">{{ user }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Favorite Type:</th>
+                    <td>{{ prefer.type }}</td>
+                </tr>
             </tbody>
-        </table>
-     </p>
+            </table>
+        </p>
     </section>
 {% endblock %}

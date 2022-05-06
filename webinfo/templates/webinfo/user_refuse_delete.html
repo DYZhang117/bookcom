@@ -13,60 +13,60 @@
             sections:
         </p>
 
-    <p class="lead">
-        {% if posts %}
-            <h3>Related Posts</h3>
-            <ul class="list-group">
-                {% for post in posts %}
-                <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
-                {%  endfor %}
-            </ul>
-        {% endif %}
-    </p>
+        <p class="lead">
+            {% if posts %}
+                <h3>Related Posts</h3>
+                <ul class="list-group">
+                    {% for post in posts %}
+                        <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
+                    {%  endfor %}
+                </ul>
+            {% endif %}
+        </p>
 
-    <p class="lead">
-        {% if likes %}
-            <h3>Related Favorite Books</h3>
-            <ul class="list-group">
-                {% for like in likes %}
-                <a href="{{ like.get_absolute_url }}" class="list-group-item list-group-item-action">{{ like.book }}</a>
-                {%  endfor %}
-            </ul>
-        {% endif %}
-    </p>
+        <p class="lead">
+            {% if likes %}
+                <h3>Related Favorite Books</h3>
+                <ul class="list-group">
+                    {% for like in likes %}
+                        <a href="{{ like.get_absolute_url }}" class="list-group-item list-group-item-action">{{ like.book }}</a>
+                    {%  endfor %}
+                </ul>
+            {% endif %}
+        </p>
 
-    <p class="lead">
-        {% if prefers %}
-            <h3>Related Favorite Genres</h3>
-            <ul class="list-group">
-                {% for prefer in prefers %}
-                <a href="{{ prefer.get_absolute_url }}" class="list-group-item list-group-item-action">{{ prefer.type }}</a>
-                {%  endfor %}
-            </ul>
-        {% endif %}
-    </p>
+        <p class="lead">
+            {% if prefers %}
+                <h3>Related Favorite Genres</h3>
+                <ul class="list-group">
+                    {% for prefer in prefers %}
+                        <a href="{{ prefer.get_absolute_url }}" class="list-group-item list-group-item-action">{{ prefer.type }}</a>
+                    {%  endfor %}
+                </ul>
+            {% endif %}
+        </p>
 
-    <p class="lead">
-        {% if comments %}
-            <h3>Related Comments</h3>
-            <ul class="list-group">
-                {% for comment in comments %}
-                <a href="{{ comment.get_absolute_url }}" class="list-group-item list-group-item-action">{{ comment }}</a>
-                {%  endfor %}
-            </ul>
-        {% endif %}
-    </p>
+        <p class="lead">
+            {% if comments %}
+                <h3>Related Comments</h3>
+                <ul class="list-group">
+                    {% for comment in comments %}
+                        <a href="{{ comment.get_absolute_url }}" class="list-group-item list-group-item-action">{{ comment }}</a>
+                    {%  endfor %}
+                </ul>
+            {% endif %}
+        </p>
 
-    <p class="lead">
-        {% if participates %}
-            <h3>Related Participates</h3>
-            <ul class="list-group">
-                {% for participate in participates %}
-                <a href="{{ participate.get_absolute_url }}" class="list-group-item list-group-item-action">{{ participate.activity }}</a>
-                {%  endfor %}
-            </ul>
-        {% endif %}
-    </p>
+        <p class="lead">
+            {% if participates %}
+                <h3>Related Participates</h3>
+                <ul class="list-group">
+                    {% for participate in participates %}
+                        <a href="{{ participate.get_absolute_url }}" class="list-group-item list-group-item-action">{{ participate.activity }}</a>
+                    {%  endfor %}
+                </ul>
+            {% endif %}
+        </p>
 
         <p>
             Return to <a href="{% url 'webinfo_user_list_urlpattern' %}">User List</a>.
